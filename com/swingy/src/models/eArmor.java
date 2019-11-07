@@ -50,11 +50,51 @@ public enum eHeroes {
 		this.armor		= armor;
 		this.attack		= weapon.getDamage() + 100;
 		this.defense	= armor.getStrength() + 100;
-		this.hitPoints	= 200 + helm.getLife();
+		this.hitPoints	= helm.getLife() + 100;
 	}
 
     @override
-    public static string toString() {
+    public  String toString() {
         return ( this.name );
+    }
+
+    public String getHitPoints() {
+        return ( this.hitPoints );
+    }
+
+    public void setHitPoints( String hitPoints ) {
+        this.hitPoints = hitPoints;
+    }
+
+    public String getDefense() {
+        return ( this.defense );
+    }
+
+    public void setDefense( String defense ) {
+        this.defense = defense;
+    }
+
+    public String getAttack() {
+        return ( this.attack );
+    }
+
+    public void setAttack( String attack ) {
+        this.attack = attack;
+    }
+
+    public eArmor getArmor() {
+        return ( this.armor );
+    }
+
+    public void setArmor( String armor ) {
+        this.armor = armor;
+    }
+
+    public String getName() {
+        return ( this.name );
+    }
+
+    public void setName( String name ) {
+        this.name = name;
     }
 }

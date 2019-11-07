@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 import controllers.HeroController;
 
 public class ConsoleController {
@@ -53,9 +55,36 @@ public class ConsoleController {
     }
 
     public static Hero createPlayer() {
+        String name = null;
         Hero player = null;
+        List<eHeroes> players = Arrays.asList(eHeros.values());
 
-        
+        /**
+         * Choose Player
+         */
+        while( player == null ) {
+            System.out.flush();
+            Sysyem.out.println("Choose a player");
+            for (Heros pl: players) {
+				System.out.printf( players.indexOf(pl) + 1 + " | " + pl.getName());
+            }
+            
+            System.out.println("Choose player ");
+            int choice = Integer.parseInt(in.nextLine());
+
+            //validate input - correct index
+            if ( player = players.get( choice -1 ) != null) {
+                Application.saveGameState( HeroController.hero(name, pl).toArray());
+						
+				return HeroController.hero(name, pl);
+            } else {
+                System.out.error("incorrect Choice !");
+                System.exit( -1 );
+            }
+
+
+        }
+
     }
 
 
