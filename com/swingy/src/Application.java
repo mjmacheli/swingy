@@ -25,7 +25,10 @@ public class Application {
                 //TODO GUI based
             } else {
                 System.out.error("Wrong Choise");
+                System.exit(-1);
             }
+        } else {
+            System.out.error( "Atleast 1 Arg required" );
         }
     }
 

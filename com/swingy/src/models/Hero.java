@@ -14,7 +14,7 @@ public class Hero implements iFightable{
 	private String kind;
 	private Weapons weapon;
 	private String charName;
-    private Point coordinates;
+    private Point location;
     
 
 
@@ -98,17 +98,17 @@ public class Hero implements iFightable{
 		this.weapon = weapon;
 	}
 
-	public Coordinates getCoordinates() {
-		return coordinates;
+	public Point getLocation() {
+		return location;
 	}
 
-	public void setCoordinates(Coordinates coordinates) {
-		this.coordinates = coordinates;
+	public void setLocation(Point location) {
+		this.location = location;
 	}
 
     public String toArray() {
 		return name + "," + charName + "," + kind + "," + level + "," + experience + "," + attack + "," + defense + ","
-				+ hitPoints + "," + power + "," + weapon + "," + coordinates.getX() + "," + coordinates.getY();
+				+ hitPoints + "," + power + "," + weapon + "," + location.getX() + "," + location.getY();
     }
     
     @Override
