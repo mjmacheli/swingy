@@ -1,6 +1,8 @@
-import models.interfaces.Fightable;
+package models;
 
-public class Villian implements Fightable {
+import models.Fightable;
+
+public class Villian implements iFightable {
     private String name;
 	private String kind;
 	private int attack;

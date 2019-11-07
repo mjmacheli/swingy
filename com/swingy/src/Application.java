@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.util.concurrent.CountDownLatch;
 
 public class Application {
-    // public static Hero player;
+    public static Hero player;
 
     public static void main(String[] args) {
         File users = new File("users.txt");

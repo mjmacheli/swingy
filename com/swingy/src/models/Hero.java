@@ -1,8 +1,9 @@
 package  models;
 
-import models.interfaces.Fightable;
+import models.Fightable;
+import utils.Point;;
 
-public class Hero implements Fightable{
+public class Hero implements iFightable{
     private String name;
 	private int level;
 	private int experience;
@@ -13,7 +14,7 @@ public class Hero implements Fightable{
 	private String kind;
 	private Weapons weapon;
 	private String charName;
-    private Coordinates coordinates;
+    private Point coordinates;
     
 
 
