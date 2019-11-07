@@ -27,6 +27,62 @@ public class ConsoleController {
         }
     }
 
+    public static String Map( List<Point> villians ) {
+
+        int level = Application.player.getLevel();
+
+        //Check if player on any edge
+        if ( player.checkGrid( Application.player )) {
+            
+        } else {
+            System.out.println("You Win! ");
+            Application.player.setExperience(Application.player.getExperience());
+            System.exit(0);
+        }
+
+        System.out.printf("Level: " + Application.player.getLevel() +" | "+ Application.player.getExperience()  +" | "+  Application.player.getHitPoints());
+		for (int y = ((Application.player.getLevel() - 1) * 5 + 10 - (Application.player.getLevel() % 2)); y >= 1; y-- ) {
+			for (int x = 1; x <= ((Application.player.getLevel() - 1) * 5 + 10 - (Application.player.getLevel() % 2)); x++ ) {
+				int pl = 0;
+				if ((x == Application.player.getLocation().getX()) && (y == Application.player.getLocation().getY())) {
+					for ( Point loc : villians) {
+						if ((loc.getX() == Application.player.getLocation().getX()) 
+								&& (loc.getY() == Application.player.getLocation().getY())) {
+							pl = 1;
+							map += "[o]";
+							BattleCont.fightRun( villians );
+							break;
+						}
+					}
+					if (pl != 1) {
+                        map += "[o]";
+                    }
+				} else {
+					for ( Point loc : villians ) {
+						if ((loc.getX() == x) && (loc.getY() == y)) {
+							pl = 1;
+							map += "[x]";
+							break;
+						}
+					}
+					if (pl != 1) {
+                        map += "[ ]";
+                    }
+				}
+			}
+			map += "\n";
+		}
+		Application.player.levelUp();
+		if (level < Application.player.getLevel()) {			
+			return map( villians );
+        }
+        
+		HeroCont.updateData(Application.player);
+        System.out.print( "You Win" );
+        
+		return map;
+    }
+
     public static void listPlayers( List<Hero> playerList ) {
         System.out.flush();
         for (Hero player: playerList) {
@@ -72,6 +128,7 @@ public class ConsoleController {
             System.out.println("Choose player ");
             int choice = Integer.parseInt(in.nextLine());
 
+
             //validate input - correct index
             if ( player = players.get( choice -1 ) != null) {
                 Application.saveGameState( HeroController.hero(name, pl).toArray());
@@ -88,4 +145,7 @@ public class ConsoleController {
     }
 
 
+    private static void Move() {
+        
+    }
 }
