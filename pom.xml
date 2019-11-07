@@ -3,8 +3,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.springframework</groupId>
-    <artifactId>gs-maven</artifactId>
+    <groupId>com.swingy</groupId>
+    <artifactId>swingy</artifactId>
     <packaging>jar</packaging>
     <version>0.1.0</version>
 
@@ -29,7 +29,7 @@
                             <transformers>
                                 <transformer
                                     implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>main.java.hello.HelloWorld</mainClass>
+                                    <mainClass>com.swingy.Application</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -40,10 +40,13 @@
     </build>
 
     <dependencies>
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.9.2</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
+
 </dependencies>
 </project>

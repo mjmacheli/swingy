@@ -3,8 +3,7 @@ package models;
 public enum eWeapons {
     SWORD("Sword", 3),
 	KNIFE("Knife", 4),
-	GUN("GUN", 5),
-    SPADE("SPADE", 6);
+	GUN("GUN", 5);
     
     private String type;
     private int damage;
