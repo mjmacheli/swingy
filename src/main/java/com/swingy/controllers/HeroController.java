@@ -1,18 +1,26 @@
-package controllers;
+package com.swingy.controllers;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 
-import models.Hero;
+import com.swingy.models.Hero;
+import com.swingy.models.eHeroes;
 
 public class HeroController {
     
-    public static Hero hero( String name, Heros Character ) {
+    public static Hero hero( String name, eHeroes Character ) {
         //TODO : instantiate with builder
+
+        return null;
     }
 
     public static List<Hero> savedPlayers() {
         //Read From file and instantiate player
+
+        return null;
     }
 
     public static String playerStats( Hero pl ) {
@@ -58,5 +66,31 @@ public class HeroController {
             e.printStackTrace();
             System.exit(-2);
         }
+    }
+
+    public static void saveState( Hero hr ) {
+        File users = new File( "GameState.txt");
+        List<Hero> players = savedPlayers();
+
+        try ( PrintWriter pw = new PrintWriter( new FileOutputStream( users ))) {
+
+            for( Hero pl : players ) {
+                if ( pl.getName().equals( hr.getName() )) {
+                    pw.write( hr.toArray() + "\n");
+                } else {
+                    pw.write( pl.toArray() + "\n");
+                }
+            }
+        } catch ( FileNotFoundException e ) {
+            e.printStackTrace();
+            System.exit( -1 );
+        }
+    }
+
+    public static boolean checkGrid( Hero hr ) {
+        if ((hr.getLocation().getX() >= 1 && hr.getLocation().getX() <= ((hr.getLevel() - 1) * 5 + 10 - (hr.getLevel() % 2))) )
+            if ( hr.getLocation().getY() >= 1 && hr.getLocation().getY() <= (( hr.getLevel() - 1) * 5 + 10 - ( hr.getLevel() % 2)))
+			    return true;
+		return false;
     }
 }

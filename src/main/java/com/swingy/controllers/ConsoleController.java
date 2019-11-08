@@ -1,6 +1,13 @@
+package com.swingy.controllers;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-import controllers.HeroController;
+import com.swingy.Application;
+import com.swingy.models.Hero;
+import com.swingy.models.eHeroes;
+import com.swingy.utils.Point;
 
 public class ConsoleController {
 
@@ -13,28 +20,30 @@ public class ConsoleController {
         //Game loop
         while( true ) {
             System.out.println("Enter 1 to create new player or 2 to select a player: ");
-            int choice = Integer.parseInt( in.nextline() );
+            int choice = Integer.parseInt( in.nextLine() );
             if ( choice == 1 ) {
                 Application.player = createPlayer();
                 //Play Game Here
 
             } else if ( choice == 2 ) { //Fetch from File
-                if ( Hero.getPlayer ) {
+                if ( HeroController.savedPlayers() != null) {
                     Application.player = getHero();
                 }
             } else {
-                System.out.error( "Hero File empty" );
+                System.out.println( "Hero File empty" );
                 System.exit( -1 );
             }
         }
     }
+
+
 
     public static String Map( List<Point> villians ) {
 
         int level = Application.player.getLevel();
 
         //Check if player on any edge
-        if ( player.checkGrid( Application.player )) {
+        if ( HeroController.checkGrid( Application.player )) {
             
         } else {
             System.out.println("You Win! ");
@@ -43,7 +52,9 @@ public class ConsoleController {
         }
 
         System.out.printf("Level: " + Application.player.getLevel() +" | "+ Application.player.getExperience()  +" | "+  Application.player.getHitPoints());
-		for (int y = ((Application.player.getLevel() - 1) * 5 + 10 - (Application.player.getLevel() % 2)); y >= 1; y-- ) {
+		String map = "";
+        for (int y = ((Application.player.getLevel() - 1) * 5 + 10
+                - (Application.player.getLevel() % 2)); y >= 1; y--) {
 			for (int x = 1; x <= ((Application.player.getLevel() - 1) * 5 + 10 - (Application.player.getLevel() % 2)); x++ ) {
 				int pl = 0;
 				if ((x == Application.player.getLocation().getX()) && (y == Application.player.getLocation().getY())) {
@@ -51,24 +62,24 @@ public class ConsoleController {
 						if ((loc.getX() == Application.player.getLocation().getX()) 
 								&& (loc.getY() == Application.player.getLocation().getY())) {
 							pl = 1;
-							map += "[o]";
-							BattleCont.fightRun( villians );
+							map += "o";
+							GameController.fight( villians );
 							break;
 						}
 					}
 					if (pl != 1) {
-                        map += "[o]";
+                        map += "o";
                     }
 				} else {
 					for ( Point loc : villians ) {
 						if ((loc.getX() == x) && (loc.getY() == y)) {
 							pl = 1;
-							map += "[x]";
+							map += "x";
 							break;
 						}
 					}
 					if (pl != 1) {
-                        map += "[ ]";
+                        map += " ";
                     }
 				}
 			}
@@ -76,10 +87,10 @@ public class ConsoleController {
 		}
 		Application.player.levelUp();
 		if (level < Application.player.getLevel()) {			
-			return map( villians );
+			return Map( villians );
         }
         
-		HeroCont.updateData(Application.player);
+		HeroController.saveState(Application.player);
         System.out.print( "You Win" );
         
 		return map;
@@ -97,15 +108,15 @@ public class ConsoleController {
         int pl;
         List<Hero> players = HeroController.savedPlayers();
 
-        while( !player ) {
+        while( player != null) {
             listPlayers( players );
             System.out.println("Select player");
             //test with index out of bounds
-            pl = Integer.parseInt( in.nextline() );
-            if ( player = players.get( pl )) {
+            pl = Integer.parseInt( in.nextLine());
+            if ( player == players.get( pl )) {
                 return ( player );
             } else {
-                System.out.error( "Incorrect Selection" );
+                System.out.println( "Incorrect Selection" );
                 System.exit( -1 );
             }
         }
@@ -115,15 +126,15 @@ public class ConsoleController {
     public static Hero createPlayer() {
         String name = null;
         Hero player = null;
-        List<eHeroes> players = Arrays.asList(eHeros.values());
+        List<eHeroes> players = Arrays.asList(eHeroes.values());
 
         /**
          * Choose Player
          */
         while( player == null ) {
             System.out.flush();
-            Sysyem.out.println("Choose a player");
-            for (Heros pl: players) {
+            System.out.println("Choose a player");
+            for (eHero pl: players) {
 				System.out.printf( players.indexOf(pl) + 1 + " | " + pl.getName());
             }
             
@@ -137,7 +148,7 @@ public class ConsoleController {
 						
 				return HeroController.hero(name, pl);
             } else {
-                System.out.error("incorrect Choice !");
+                System.out.println("incorrect Choice !");
                 System.exit( -1 );
             }
 
@@ -184,7 +195,7 @@ public class ConsoleController {
                         break;
 
                     default :
-                        System.out.error("Wrong direction! ");
+                        System.out.println("Wrong direction! ");
                         break;
                 }
             } else {

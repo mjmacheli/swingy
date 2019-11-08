@@ -1,7 +1,8 @@
-package  models;
+package  com.swingy.models;
 
-import models.Fightable;
-import utils.Point;;
+import java.util.Random;
+
+import com.swingy.utils.Point;
 
 public class Hero implements iFightable{
     private String name;
@@ -12,7 +13,7 @@ public class Hero implements iFightable{
 	private int hitPoints;
 	private int power;
 	private String kind;
-	private Weapons weapon;
+	private eWeapons weapon;
 	private String charName;
     private Point location;
     
@@ -90,11 +91,11 @@ public class Hero implements iFightable{
 		this.power = power;
 	}
 
-	public Weapons getWeapon() {
+	public eWeapons getWeapon() {
 		return weapon;
 	}
 
-	public void setWeapon(Weapons weapon) {
+	public void setWeapon(eWeapons weapon) {
 		this.weapon = weapon;
 	}
 
@@ -107,8 +108,7 @@ public class Hero implements iFightable{
 	}
 
     public String toArray() {
-		return name + "," + charName + "," + kind + "," + level + "," + experience + "," + attack + "," + defense + ","
-				+ hitPoints + "," + power + "," + weapon + "," + location.getX() + "," + location.getY();
+		return name + "," + charName + "," + kind + "," + level + "," + experience + "," + attack + "," + defense + "," + hitPoints + "," + power + "," + weapon + "," + location.getX() + "," + location.getY();
     }
     
     @Override
@@ -127,25 +127,17 @@ public class Hero implements iFightable{
     }
 
     public void levelUp() {
-        switch( this.experience ) {
-            case ( this.experience < 1000 ):
+            if ( this.experience < 1000 )
                 this.level = 0;
-                break;
-            case ( this.experience < 2450 ):
+            else if ( this.experience < 2450 )
                 this.level = 1;
-                break;
-            case ( this.experience < 4800 ):
+            else if ( this.experience < 4800 )
                 this.level = 2;
-                break;
-            case ( this.experience < 8050 ):
+            else if ( this.experience < 8050 )
                 this.level = 3;
-                break;
-            case ( this.experience < 12200 ):
+            else if ( this.experience < 12200 )
                 this.level = 4;
-                break;
-            default:
+            else
                 this.level = 5;
-                break;
         }
-    }
 }

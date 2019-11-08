@@ -1,6 +1,6 @@
-package models;
+package com.swingy.models;
 
-public class eHelms {
+public enum eHelms {
 
     HELM1("Helm1", 23),
     HELM2("Helm2", 45),
@@ -9,24 +9,24 @@ public class eHelms {
     private String type;
     private int hitPoints;
 
-    public eHelms( int hitPoints, String type ) {
+    eHelms(  String type ,int hitPoints ) {
         this.hitPoints = hitPoints;
         this.type = type;
     }
 
-    void setType( String hitPoints ) {
-        this.hitPoints = hitPoints;
+    void setType( String type ) {
+        this.type = type;
     }
 
     String getType() {
         return ( this.type );
     }
 
-    void setHitPoints( String hp ) {
+    void setHitPoints( int hp ) {
         this.hitPoints = hp;
     }
 
-    int hitPoints() {
+    int getHitPoints() {
         return ( this.hitPoints );
     }
 

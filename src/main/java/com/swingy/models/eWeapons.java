@@ -1,4 +1,4 @@
-package models;
+package com.swingy.models;
 
 public enum eWeapons {
     SWORD("Sword", 3),
@@ -12,7 +12,7 @@ public enum eWeapons {
         this.type = type;
     }
 
-    String getType() {
+    public String getType() {
         return ( this.type );
     }
 
@@ -20,7 +20,7 @@ public enum eWeapons {
         this.damage = damage;
     }
 
-    String getDamage() {
+    public int getDamage() {
         return ( this.damage );
     }
     

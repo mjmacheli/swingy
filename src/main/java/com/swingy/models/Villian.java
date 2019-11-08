@@ -1,6 +1,4 @@
-package models;
-
-import models.Fightable;
+package com.swingy.models;
 
 public class Villian implements iFightable {
     private String name;
@@ -8,7 +6,7 @@ public class Villian implements iFightable {
 	private int attack;
 	private int defense;
 	private int power;
-    private Weapons weapon;
+    private eWeapons weapon;
     private int hitPoints;
 
     public String getName() {
@@ -51,11 +49,11 @@ public class Villian implements iFightable {
 		this.power = power;
 	}
 
-	public Weapons getWeapon() {
+	public eWeapons getWeapon() {
 		return weapon;
 	}
 
-	public void setWeapon(Weapons weapon) {
+	public void setWeapon(eWeapons weapon) {
 		this.weapon = weapon;
 	}
 
@@ -68,14 +66,13 @@ public class Villian implements iFightable {
 	}
 
 
-    public Villian( Villian villian ) {
-        this.name = villain.getName();
-		this.kind = villain.getKind();
-		this.attack = villain.getAttack();
-		this.defense = villain.getDefense();
-		this.power = villain.getAttack() + villain.getDefense() + 13;
-		this.weapon = villain.getWeapon();
-		this.hitPoints = 130 + villain.getDefense();
+    public Villian( eVillians villian ) {
+        this.name = villian.getName();
+		this.attack = villian.getAttack();
+		this.defense = villian.getDefense();
+		this.power = villian.getAttack() + villian.getDefense() + 13;
+		this.weapon = villian.getWeapons();
+		this.hitPoints = 130 + villian.getDefense();
     }
 
     public void updateHitPoints( int damage ) {
@@ -83,4 +80,10 @@ public class Villian implements iFightable {
             this.hitPoints =- damage;
         }
     }
+
+	@Override
+	public String toArray() {
+		// TODO Auto-generated method stub
+		return( name + "," + attack + "," + defense + "," + hitPoints + "," + power + "," + weapon) ;
+	}
 }

@@ -1,4 +1,4 @@
-package utils;
+package com.swingy.utils;
 
 public class Point {
     private int x, y;

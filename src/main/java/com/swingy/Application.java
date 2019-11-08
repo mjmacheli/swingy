@@ -1,7 +1,13 @@
+package com.swingy;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import com.swingy.controllers.ConsoleController;
+import com.swingy.models.Hero;
 
 public class Application {
     public static Hero player;
@@ -13,7 +19,7 @@ public class Application {
             try {
                 users.createNewFile();
             } catch (IOException e ) {
-                System.out.error(" Failed to Open Users");
+                System.out.println(" Failed to Open Users");
             }
         }
 
@@ -24,11 +30,11 @@ public class Application {
             } else if ( args[0].equals("GUI")) {
                 //TODO GUI based
             } else {
-                System.out.error("Wrong Choise");
+                System.out.println("Wrong Choise");
                 System.exit(-1);
             }
         } else {
-            System.out.error( "Atleast 1 Arg required" );
+            System.out.println( "Atleast 1 Arg required" );
         }
     }
 
