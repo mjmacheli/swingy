@@ -6,6 +6,8 @@ public class ConsoleController {
 
     public static Scanner in = new Scanner(System.in);
 
+    private static List<Point> villiansLoc;
+
     public static void game() {
 
         //Game loop
@@ -144,8 +146,53 @@ public class ConsoleController {
 
     }
 
-
     private static void Move() {
+
+        int choice;
+        String array;
+        villiansLoc = VillianController.villianPos( Application.player );
+
+        while( true ) {
+            System.out.flush();
+            array = Map( villiansLoc );
+
+            System.out.println( array );
+            if ( HeroController.checkGrid( Application.player )) {
+                System.out.prinln( "Keys : 2) SOUTH \n 4) WEST \n 6) EAST 8) NORTH " );
+                choice = Integer.parseInt(in.nextLine());
+
+                switch( choice ) {
+
+                    case 2 :
+                        Application.player.getLocation().setY(Application.player.getLocation().getY() - 1);
+                        System.out.println("x = "+ Application.player.getLocation().getX() + ", Y = " +Application.player.getLocation().getY());
+                        break;
+                    
+                    case 4 :
+                        Application.player.getLocation().setX(Application.player.getLocation().getX() - 1);
+                        System.out.println("x = "+ Application.player.getLocation().getX() + ", Y = " +Application.player.getLocation().getY());
+                        break;
+                    
+                    case 6 :
+                        Application.player.getLocation().setX(Application.player.getLocation().getX() + 1);
+                        System.out.println("x = "+ Application.player.getLocation().getX() + ", Y = " +Application.player.getLocation().getY());
+                        break;
+
+                    case 8 :
+                        Application.player.getLocation().setY(Application.player.getLocation().getY() + 1);
+                        System.out.println("x = "+ Application.player.getLocation().getX() + ", Y = " +Application.player.getLocation().getY());
+                        break;
+
+                    default :
+                        System.out.error("Wrong direction! ");
+                        break;
+                }
+            } else {
+                return ;
+            }
+        }
         
     }
+
+
 }
