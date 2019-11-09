@@ -1,11 +1,11 @@
 package com.swingy.controllers;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import com.swingy.models.Hero;
+import com.swingy.utils.Point;
 
 public class VillianController {
     /**
@@ -21,7 +21,7 @@ public class VillianController {
             Point loc = new Point(new Random().nextInt(len), new Random().nextInt(len) );
             //check villians ontop of others or a player on instantiation
             //might need to change pl.getLocation
-            if ( (!villians.contains( loc )) && ( loc.x != pl.getLocation().getX() && loc.y != pl.getLocation().getY()) ) {
+            if ( (!villians.contains( loc )) && ( loc.getX() != pl.getLocation().getX() && loc.getY() != pl.getLocation().getY())) {
                 villians.add( loc );
             }
         }

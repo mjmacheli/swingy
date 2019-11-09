@@ -23,6 +23,8 @@ public class ConsoleController {
             int choice = Integer.parseInt( in.nextLine() );
             if ( choice == 1 ) {
                 Application.player = createPlayer();
+
+                System.out.println("we here");
                 //Play Game Here
 
             } else if ( choice == 2 ) { //Fetch from File
@@ -35,7 +37,6 @@ public class ConsoleController {
             }
         }
     }
-
 
 
     public static String Map( List<Point> villians ) {
@@ -125,36 +126,37 @@ public class ConsoleController {
 
     public static Hero createPlayer() {
         String name = null;
-        Hero player = null;
+        eHeroes player = null;
         List<eHeroes> players = Arrays.asList(eHeroes.values());
 
         /**
          * Choose Player
          */
+
         while( player == null ) {
             System.out.flush();
             System.out.println("Choose a player");
-            for (eHero pl: players) {
-				System.out.printf( players.indexOf(pl) + 1 + " | " + pl.getName());
+            for ( eHeroes pl : players) {
+				System.out.printf( players.indexOf(pl) + 1 + " | " + pl.getName() + "\n");
             }
             
-            System.out.println("Choose player ");
+            // System.out.println("Choose player ");
             int choice = Integer.parseInt(in.nextLine());
 
 
             //validate input - correct index
-            if ( player = players.get( choice -1 ) != null) {
-                Application.saveGameState( HeroController.hero(name, pl).toArray());
-						
-				return HeroController.hero(name, pl);
+            player = players.get(choice - 1);
+
+            if ( player != null ) {
+                Application.saveGameState( HeroController.hero(name, player).toArray());
+						System.out.println("saved");
+				return HeroController.hero(name, player);
             } else {
                 System.out.println("incorrect Choice !");
                 System.exit( -1 );
             }
-
-
         }
-
+        return null;
     }
 
     private static void Move() {
@@ -169,7 +171,7 @@ public class ConsoleController {
 
             System.out.println( array );
             if ( HeroController.checkGrid( Application.player )) {
-                System.out.prinln( "Keys : 2) SOUTH \n 4) WEST \n 6) EAST 8) NORTH " );
+                System.out.println( "Keys : 2) SOUTH \n 4) WEST \n 6) EAST 8) NORTH " );
                 choice = Integer.parseInt(in.nextLine());
 
                 switch( choice ) {

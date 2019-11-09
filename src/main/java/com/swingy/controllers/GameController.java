@@ -1,6 +1,6 @@
 package com.swingy.controllers;
 
-import java.awt.Point;
+import com.swingy.utils.Point;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -14,7 +14,7 @@ import com.swingy.models.eVillians;
 public class GameController {
     
 
-    public static void fight( List<com.swingy.utils.Point> villians2 ) {
+    public static void fight( List<Point> villians2 ) {
         boolean res;
         int choice;
 

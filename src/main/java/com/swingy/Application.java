@@ -23,7 +23,7 @@ public class Application {
             }
         }
 
-        if ( args.length > 1) {
+        if ( args.length > 0) {
             if (args[0].equals("CMD")) {
                 //TODO: Command line based
                 ConsoleController.game();
@@ -34,6 +34,7 @@ public class Application {
                 System.exit(-1);
             }
         } else {
+            ConsoleController.game();
             System.out.println( "Atleast 1 Arg required" );
         }
     }
